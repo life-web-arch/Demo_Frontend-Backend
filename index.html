@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Greeting App</title>
+  <script>
+    async function greet() {
+      const name = document.getElementById('name').value;
+      const response = await fetch(
+        'https://your-backend.onrender.com/api/greet',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name: name })
+        }
+      );
+      const data = await response.json();
+      document.getElementById('result').innerText = data.message;
+    }
+  </script>
+</head>
+<body>
+  <h2>Hello from Frontend</h2>
+  <input type="text" id="name" placeholder="Enter your name" />
+  <button onclick="greet()">Greet</button>
+  <p id="result"></p>
+</body>
+</html>
